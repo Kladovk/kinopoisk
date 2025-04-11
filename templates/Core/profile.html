@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Профиль{% endblock title %}
+
+{% block content %}
+<h1 style="text-align: center;">Профиль</h1>
+<div style="width: 600px; text-align: center; border-radius: 10px solid gray; padding:20px; margin: 0 auto;">
+    <h3>{{user.username}}</h3>
+    {% if user.avatar %}
+        <img src="{{ user.avatar.url }}" style="width: 100px; height: 100px;">
+    {% endif %}  
+</div>
+{% endblock %}

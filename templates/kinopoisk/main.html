@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Главная{% endblock title %}
+
+{% block content %}
+<h1 class="text-center mt-5 ">Популярные фильмы:</h1>
+<div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; max-width: 1200px; margin: auto;">
+        {% for movie in movies %}
+        <div class="">
+            <div class="card" style="width: 18rem;">
+                <img src="{{ movie.poster.url }}" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">{{ movie.title }}</h5>
+                    <p class="card-text">{{ movie.description }}</p>
+                    <p class="card-text">
+                        <h5 class="card-title">Жанры:</h5>
+                        {% for genre in movie.genres.all %}
+                            {{ genre.name }}
+                        {% endfor %}
+                    </p>
+                    <a href="#" class="btn btn-primary">Подробнее о фильме...</a>
+                </div>
+    </div>
+</div>
+{% endfor %}
+</div>
+{% endblock %}

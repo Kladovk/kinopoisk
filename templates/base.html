@@ -1,0 +1,44 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'kinopoisk:main' %}">КиноПоиск</a>
+            <ul class="nav">
+                <li class="nav-item"><a class="nav-link" href="{% url 'kinopoisk:movie_list' %}">Фильмы</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'kinopoisk:person_list' person_type='actor' %}">Актеры</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'kinopoisk:person_list' person_type='director' %}">Режиссеры</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'kinopoisk:genre_list' %}">Жанры</a></li>
+                <li class="nav-item"><a class="nav-link" href="/admin/">Админка</a></li>
+            </ul>
+            <ul class="nav">
+                {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile' %}">Профиль</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'signout' %}">Выход</a>
+                </li>
+                {% else %} 
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'signin' %}">Войти</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'signup' %}">Зарегистрироваться</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    {% block content %}{% endblock content %}
+</body>
+</html>
